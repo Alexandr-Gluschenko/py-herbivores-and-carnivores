@@ -33,8 +33,12 @@ class Carnivore(Animal):
                 victim.health -= 50
                 print(f"{self.name} bit {victim.name}"
                       f". {victim.name} now has {victim.health} health.")
+            else:
+                print(f"{self.name}"
+                      f" couldn't bite {victim.name} because it's hidden.")
             if victim.health <= 0:
                 Animal.alive.remove(victim)
                 print(f"{victim.name} has died.")
-            else:
-                print(f"{self.name} couldn't bite {victim.name}.")
+        else:
+            print(f"{self.name}"
+                  f" can't bite {victim.name} because it is not a Herbivore.")
