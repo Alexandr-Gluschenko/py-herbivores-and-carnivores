@@ -16,14 +16,19 @@ class Animal:
             Animal.alive.remove(self)
 
     def __repr__(self) -> str:
-        return (f"Name: {self.name}"
-                f", Health: {self.health}, Hidden: {self.hidden}")
+        return (f"{{Name: {self.name}"
+                f", Health: {self.health}, Hidden: {self.hidden}}}")
+
+    @classmethod
+    def __str__(cls) -> str:
+        return str(cls.alive)
 
 
 class Herbivore(Animal):
     def hide(self) -> None:
         self.hidden = not self.hidden
-        print(f"Herbivore is now {"hidden"} if self.hidden else {"visible"}")
+        state = "hidden" if self.hidden else "visible"
+        print(f"Herbivore is now {state}")
 
 
 class Carnivore(Animal):
@@ -36,6 +41,7 @@ class Carnivore(Animal):
             else:
                 print(f"{self.name}"
                       f" couldn't bite {victim.name} because it's hidden.")
+
             if victim.health <= 0:
                 Animal.alive.remove(victim)
                 print(f"{victim.name} has died.")
